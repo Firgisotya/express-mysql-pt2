@@ -1,51 +1,51 @@
-const { Product } = require('../models')
+const { Brand } = require('../models')
 
 module.exports= {
-    getAllProducts: async (req, res) => {
+    getAllBrand: async (req, res) => {
         try {
-            const products = await Product.findAll()
+            const brands = await Brand.findAll()
             res.status(200).json({
                 message: 'Success',
-                products
+                brands
             })
         } catch (error) {
             throw error
         }
     },
-    storeProduct: async (req, res) => {
+    storeBrand: async (req, res) => {
         try {
-            const product = await Product.create(req.body)
+            const brands = await Brand.create(req.body)
             res.status(201).json({
                 message: 'Success Create Data',
-                product
+                brands
             })
         } catch (error) {
             throw error
         }
     },
-    updateProduct: async (req, res) => {
+    updateBrand: async (req, res) => {
         try {
             const id = req.params.id
-            const product = await Product.update(req.body, {
+            const brands = await Brand.update(req.body, {
                 where: { id },
                 returning: true
             })
             res.status(201).json({
                 message: 'Success Update Data',
+                brands
             })
         } catch (error) {
             throw error
         }
     },
-    destroyProduct: async (req, res) => {     
+    destroyBrand: async (req, res) => {     
         try {
             const id = req.params.id
-            const product = await Product.destroy({
+            const brands = await Brand.destroy({
                 where: { id }
             })
             res.status(201).json({
                 message: 'Success Delete Data',
-                product
             })
         } catch (error) {
             throw error

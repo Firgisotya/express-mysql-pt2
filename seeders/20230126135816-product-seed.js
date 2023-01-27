@@ -6,65 +6,73 @@ module.exports = {
     return queryInterface.bulkInsert('Products', [
       {
       name: 'Iphone 12 Pro Max',
-      brand: 'Apple',
-      category: 'Smartphone',
+      brandId: 1,
+      categoryId: 1,
       price: 5000,
+      image: 'images.jpg',
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
       name: 'Iphone 11 Pro Max',
-      brand: 'Apple',
-      category: 'Smartphone',
+      brandId: 1,
+      categoryId: 1,
       price: 5000,
+      image: 'images.jpg',
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
       name: 'Iphone 13 Pro Max',
-      brand: 'Apple',
-      category: 'Smartphone',
+      brandId: 1,
+      categoryId: 1,
       price: 5000,
+      image: 'images.jpg',
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
       name: 'Iphone 14 Pro Max',
-      brand: 'Apple',
-      category: 'Smartphone',
+      brandId: 1,
+      categoryId: 1,
       price: 5000,
+      image: 'images.jpg',
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
       name: 'MAcbook Air M1',
-      brand: 'Apple',
-      category: 'Laptop',
+      brandId: 1,
+      categoryId: 2,
       price: 5000,
+      image: 'images.jpg',
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
       name: 'MAcbook Pro M1',
-      brand: 'Apple',
-      category: 'Laptop',
+      brandId: 1,
+      categoryId: 2,
       price: 5000,
+      image: 'images.jpg',
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
       name: 'MAcbook Air M2',
-      brand: 'Apple',
-      category: 'Laptop',
+      brandId: 1,
+      categoryId: 2,
       price: 5000,
+      image: 'images.jpg',
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
       name: 'MAcbook Pro M2',
-      brand: 'Apple',
-      category: 'Laptop',
+      brandId: 1,
+      categoryId: 2,
       price: 5000,
+      image: 'images.jpg',
       createdAt: new Date(),
       updatedAt: new Date()
     },
