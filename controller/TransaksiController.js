@@ -1,9 +1,13 @@
-const { Transaksi } = require('../models')
+const { Transaksi, User, Product } = require('../models')
 
 module.exports= {
     getAllTransaksi: async (req, res) => {
         try {
-            const transaksi = await Transaksi.findAll()
+            const transaksi = await Transaksi.findAll(
+                {
+                    include: [{attributes: ["firstName"], model: User}, {attributes: ["name"], model: Product}]
+                }
+            )
             res.status(200).json({
                 message: 'Success',
                 transaksi
@@ -45,6 +49,24 @@ module.exports= {
             })
             res.status(201).json({
                 message: 'Success Delete Data',
+            })
+        } catch (error) {
+            throw error
+        }
+    },
+
+    getQty: async (req, res) => {
+        try {
+            const tes = await Transaksi.findAll({
+                group: ['monthly'],
+                attributes: [["MONTH(createdAt)", "monthly"], ['SUM(qty)', 'qty']],
+                transaksi: [
+                    ['monthly', 'DESC']
+                ]
+            })
+            res.status(200).json({
+                message: 'Success',
+                tes
             })
         } catch (error) {
             throw error

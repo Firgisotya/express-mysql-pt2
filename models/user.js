@@ -3,6 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
+  const Transaksi = sequelize.define('Transaksi')
   class User extends Model {
     /**
      * Helper method for defining associations.
@@ -21,5 +22,6 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'User',
   });
+  User.hasMany(Transaksi, {foreignKey: 'userId'})
   return User;
 };

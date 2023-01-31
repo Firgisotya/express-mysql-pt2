@@ -1,8 +1,8 @@
 var express = require('express');
 const { getAllBrand, storeBrand, updateBrand, destroyBrand,  } = require('../controller/BrandController');
-const { getAllProducts, storeProduct, updateProduct, destroyProduct,  } = require('../controller/ProductController');
+const { getAllProducts, storeProduct, updateProduct, destroyProduct, countBrand, countCategory, filterBrand,  } = require('../controller/ProductController');
 const { getAllCategory, storeCategory, updateCategory, destroyCategory,  } = require('../controller/CategoryController');
-const { getAllTransaksi, storeTransaksi, updateTransaksi, destroyTransaksi,  } = require('../controller/TransaksiController');
+const { getAllTransaksi, storeTransaksi, updateTransaksi, destroyTransaksi, getQty,  } = require('../controller/TransaksiController');
 var router = express.Router();
 
 /* GET home page. */
@@ -15,6 +15,9 @@ router.get('/product', getAllProducts)
 router.post('/product', storeProduct)
 router.put('/product/:id', updateProduct)
 router.delete('/product/:id', destroyProduct)
+router.get('/brand/count', countBrand)
+router.get('/category/count', countCategory)
+router.post('/product/brandFilter', filterBrand)
 
 //BRAND ROUTES
 router.get('/brand', getAllBrand)
@@ -33,6 +36,7 @@ router.get('/transaksi', getAllTransaksi)
 router.post('/transaksi',storeTransaksi)
 router.put('/transaksi/:id', updateTransaksi)
 router.delete('/transaksi/:id', destroyTransaksi)
+router.get('/transaksi/qty', getQty)
 
 
 module.exports = router;
