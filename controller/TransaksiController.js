@@ -1,4 +1,4 @@
-const { Transaksi, User, Product } = require('../models')
+const { Transaksi, User, Product, sequelize } = require('../models')
 
 module.exports= {
     getAllTransaksi: async (req, res) => {
@@ -67,6 +67,30 @@ module.exports= {
             res.status(200).json({
                 message: 'Success',
                 tes
+            })
+        } catch (error) {
+            throw error
+        }
+    },
+
+    filterByMonth: async (req, res) => {
+        try {
+            const { month } = req.body
+            let filter;
+            if(month) {
+              filter = await sequelize.query(`SELECT SUM(Transaksis.qty) AS Qty, Transaksis.total, MONTH(Transaksis.createdAt) AS bulan, Users.firstName AS username, Products.name AS productName
+              FROM Transaksis
+              JOIN Users ON Transaksis.userId = Users.id
+              JOIN Products ON Transaksis.productId = Products.id
+              WHERE MONTH(Transaksis.createdAt) = ${month}
+              GROUP BY MONTH(Transaksis.createdAt), Transaksis.productId`)
+            } else {
+              filter = await sequelize.query('SELECT SUM(Transaksis.qty) AS Qty, Transaksis.total, MONTH(Transaksis.createdAt) AS bulan, Users.firstName AS username, Products.name AS productName FROM Transaksis JOIN Users ON Transaksis.userId = Users.id JOIN Products ON Transaksis.productId = Products.id GROUP BY MONTH(Transaksis.createdAt), Transaksis.productId')
+            }
+            
+            res.status(200).json({
+                message: 'TESTING',
+                filter
             })
         } catch (error) {
             throw error

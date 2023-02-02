@@ -2,7 +2,7 @@ var express = require('express');
 const { getAllBrand, storeBrand, updateBrand, destroyBrand,  } = require('../controller/BrandController');
 const { getAllProducts, storeProduct, updateProduct, destroyProduct, countBrand, countCategory, filterBrand,  } = require('../controller/ProductController');
 const { getAllCategory, storeCategory, updateCategory, destroyCategory,  } = require('../controller/CategoryController');
-const { getAllTransaksi, storeTransaksi, updateTransaksi, destroyTransaksi, getQty,  } = require('../controller/TransaksiController');
+const { getAllTransaksi, storeTransaksi, updateTransaksi, destroyTransaksi, getQty, filterByMonth,  } = require('../controller/TransaksiController');
 var router = express.Router();
 
 /* GET home page. */
@@ -37,6 +37,7 @@ router.post('/transaksi',storeTransaksi)
 router.put('/transaksi/:id', updateTransaksi)
 router.delete('/transaksi/:id', destroyTransaksi)
 router.get('/transaksi/qty', getQty)
+router.post('/transaksi/filterMonth', filterByMonth)
 
 
 module.exports = router;
