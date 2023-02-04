@@ -16,6 +16,21 @@ module.exports= {
             throw error
         }
     },
+    getTransaksiById: async (req, res) => {
+        try {
+            const id = req.params.id
+            const transaksi = await Transaksi.findOne({
+                where: { id },
+                include: [{attributes: ["firstName"], model: User}, {attributes: ["name"], model: Product}]
+            })
+            res.status(200).json({
+                message: 'Success',
+                transaksi
+            })
+        } catch (error) {
+            throw error
+        }
+    },
     storeTransaksi: async (req, res) => {
         try {
             const transaksi = await Transaksi.create(req.body)

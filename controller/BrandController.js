@@ -12,6 +12,20 @@ module.exports= {
             throw error
         }
     },
+    getBrandById: async (req, res) => {
+        try {
+            const id = req.params.id
+            const brands = await Brand.findOne({
+                where: { id }
+            })
+            res.status(200).json({
+                message: 'Success',
+                brands
+            })
+        } catch (error) {
+            throw error
+        }
+    },
     storeBrand: async (req, res) => {
         try {
             const brands = await Brand.create(req.body)

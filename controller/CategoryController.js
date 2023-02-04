@@ -12,6 +12,20 @@ module.exports= {
             throw error
         }
     },
+    getCategoryById: async (req, res) => {
+        try {
+            const id = req.params.id
+            const categories = await Category.findOne({
+                where: { id }
+            })
+            res.status(200).json({
+                message: 'Success',
+                categories
+            })
+        } catch (error) {
+            throw error
+        }
+    },
     storeCategory: async (req, res) => {
         try {
             const categories = await Category.create(req.body)

@@ -17,6 +17,24 @@ module.exports = {
       throw error;
     }
   },
+  getProductById: async (req, res) => {
+    try {
+      const id = req.params.id;
+      const product = await Product.findOne({
+        where: { id },
+        include: [
+          { attributes: ["name"], model: Brand },
+          { attributes: ["name"], model: Category },
+        ],
+      });
+      res.status(200).json({
+        message: "Success",
+        product,
+      });
+    } catch (error) {
+      throw error;
+    }
+  },
   storeProduct: async (req, res) => {
     try {
       const product = await Product.create(req.body);
