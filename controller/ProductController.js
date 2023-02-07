@@ -37,7 +37,13 @@ module.exports = {
   },
   storeProduct: async (req, res) => {
     try {
-      const product = await Product.create(req.body);
+      const product = await Product.create({
+        name: req.body.name,
+        brandId: req.body.brandId,
+        categoryId: req.body.categoryId,
+        price: req.body.price,
+        image: req.file.path
+      });
       res.status(201).json({
         message: "Success Create Data",
         product,
@@ -49,7 +55,13 @@ module.exports = {
   updateProduct: async (req, res) => {
     try {
       const id = req.params.id;
-      const product = await Product.update(req.body, {
+      const product = await Product.update({
+        name: req.body.name,
+        brandId: req.body.brandId,
+        categoryId: req.body.categoryId,
+        price: req.body.price,
+        image: req.file.path
+      }, {
         where: { id },
         returning: true,
       });

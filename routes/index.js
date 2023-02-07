@@ -6,6 +6,8 @@ const { getAllTransaksi, storeTransaksi, updateTransaksi, destroyTransaksi, getQ
 const { getAllUsers, getUserById, storeUser, updateUser, destroyUser } = require('../controller/UserController');
 var router = express.Router();
 
+
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });

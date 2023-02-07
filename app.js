@@ -3,8 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const multer = require('multer');
-const path = require('path');
+
 
 
 var indexRouter = require('./routes/index');
@@ -19,18 +18,26 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-const diskStorage = multer.diskStorage({
+const multer = require('multer');
+const fileStorage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, path.join(__dirname, "/uploads"));
+    cb(null, './assets/')
   },
-  // konfigurasi penamaan file yang unik
   filename: function (req, file, cb) {
-    cb(
-      null,
-      file.fieldname + "-" + Date.now() + path.extname(file.originalname)
-    );
-  },
-});
+    const name =  Date.now()
+    cb(null, name + file.originalname)
+  }
+})
+
+const fileFilter = (req, file, cb) => {
+  if (file.mimetype === 'image/png' || file.mimetype === 'image/jpg' || file.mimetype === 'image/jpeg') {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+}
+
+app.use(multer({ storage: fileStorage, fileFilter: fileFilter }).single('image'))
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
