@@ -1,6 +1,6 @@
 var express = require('express');
 const { getAllBrand, storeBrand, updateBrand, destroyBrand, getBrandById,  } = require('../controller/BrandController');
-const { getAllProducts, storeProduct, updateProduct, destroyProduct, countBrand, countCategory, filterBrand, getProductById,  } = require('../controller/ProductController');
+const { getAllProducts, storeProduct, updateProduct, destroyProduct, countBrand, countCategory, filterBrand, getProductById } = require('../controller/ProductController');
 const { getAllCategory, storeCategory, updateCategory, destroyCategory, getCategoryById } = require('../controller/CategoryController');
 const { getAllTransaksi, storeTransaksi, updateTransaksi, destroyTransaksi, getQty, filterByMonth, getTransaksiById } = require('../controller/TransaksiController');
 const { getAllUsers, getUserById, storeUser, updateUser, destroyUser } = require('../controller/UserController');
@@ -20,7 +20,7 @@ router.delete('/user/:id', destroyUser)
 
 //PRODUCT ROUTES
 router.get('/product', getAllProducts)
-router.get('product/:id', getProductById)
+router.get('/product/:id', getProductById)
 router.post('/product', storeProduct)
 router.put('/product/:id', updateProduct)
 router.delete('/product/:id', destroyProduct)
